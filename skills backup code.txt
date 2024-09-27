@@ -1,0 +1,25 @@
+/*
+        document.addEventListener("DOMContentLoaded", function () {
+            var tileContainer = document.getElementById("tileContainer");
+	    // Assume each tile has a width of 100 pixels
+
+
+            for (var i = 1; i <= 2048; i++) {
+                var tile = document.createElement("div");
+                tile.className = "tile"
+               /*var innerTile = document.createElement("div");
+                innerTile.className = "inner-tile";
+                
+                var image = document.createElement("img");
+                image.src = "image5" + ".JPG"; // Replace with your image path
+                image.alt = "Image " + i;
+                
+                innerTile.appendChild(image);
+               tile.appendChild(innerTile);*/
+                tileContainer.appendChild(tile);
+
+            }
+
+        });
+
+*/
