@@ -1,0 +1,281 @@
+<!--
+    The code in this website is licensed under the terms of the GNU General Public License (GPL).
+    You are free to modify and distribute this code, provided that you also distribute it under the GPL.
+    For more details, see: https://www.gnu.org/licenses/gpl-3.0.html
+-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <title>Project in Python </title>
+  
+<style>
+/* Add CSS styles for the project2 page */
+/* Example styles for the header */
+  body {
+    font-family: Hack, Courier New, Courier, monospace;
+	font-size: 18px;
+	font-weight: bold;
+    line-height: 1.6em;
+    background-color: #f2f2f2;
+    transition: background-color 0.3s ease;
+  }
+  
+  header {
+    background-color: rgba(51, 51, 51, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  .media {
+    margin-top: 30px;
+  }
+  
+  .media img {
+    display: block;
+    max-width: 50%;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .image-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    max-height: 80%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+  }
+  
+  .image-popup.open {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .image-popup img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .video-button {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 60px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .video-button:hover {
+    background-color: #666;
+  }
+  
+  .video-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+  }
+  
+  .video-popup.open {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .video-popup iframe {
+    width: 100%;
+    height: 100%;
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  footer a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .theme-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    font-family: Hack, Courier New, Courier, monospace;
+	font-size: 16px;
+	font-weight: bold;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .theme-button:hover {
+    background-color: #666;
+  }
+  
+  .dark-mode {
+    background-color: #333;
+    color: green;
+  }
+  
+  .dark-mode header {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .dark-mode .container {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: green;
+  }
+  
+  .dark-mode footer {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+    
+  .dark-mode p {
+    color: green;
+    font-family: Hack, Courier New, Courier, monospace;
+	font-size: 18px;
+	font-weight: bold;
+  }
+  
+</style>
+
+  
+<script>
+  // JavaScript code for the image popup
+  function openImagePopup(imageSrc) {
+    var popup = document.getElementById("imagePopup");
+    var popupImage = popup.querySelector("img");
+    popupImage.src = imageSrc;
+    popup.classList.add("open");
+  }
+
+  function closeImagePopup() {
+    var popup = document.getElementById("imagePopup");
+    popup.classList.remove("open");
+  }
+
+  // JavaScript code for the video popup
+  function openVideoPopup() {
+    var popup = document.getElementById("videoPopup");
+    popup.classList.add("open");
+  }
+
+  function closeVideoPopup() {
+    var popup = document.getElementById("videoPopup");
+    popup.classList.remove("open");
+  }
+
+  // JavaScript code for the theme toggle
+  function toggleTheme() {
+    var body = document.body;
+    body.classList.toggle("dark-mode");
+  }
+  
+</script>
+</head>
+
+<body>
+  <button class="theme-button" onclick="toggleTheme()">Toggle Theme</button>
+  <header>
+    <h1>Project in Python</h1>
+  </header>
+  <div class="container">
+    <h2>HandDetection using Computer Vision</h2>
+    <p>***********************************</p>
+    <ul>
+    <li> Mini project to learn computer vision with libraries such as mediapipe/opencv.</li><br>
+    <li> Able to detect hands swiping as well as finger movements.</li>
+    </ul>
+    <p><a href="https://github.com/iceman404/Minor-Opencv-Project" target="_blank">
+        <button>Github Link</button>
+      </a></p>
+    <p>***********************************</p>
+    
+    <div class="media">
+    <h2>Project Media</h2>
+  
+    <div class="media-content">
+      <div class="media-images">
+        <img src="../images/project-3-screenshots/Screenshot1.png" alt="Project 3 Image 1" onclick="openImagePopup('../images/project-3-screenshots/Screenshot1.png')">
+        <img src="../images/project-3-screenshots/Screenshot2.png" alt="Project 3 Image 2" onclick="openImagePopup('../images/project-3-screenshots/Screenshot2.png')">
+      </div>
+    
+      <button class="video-button" onclick="openVideoPopup()">Play Video</button>
+    </div>
+  
+    <div id="imagePopup" class="image-popup" onclick="closeImagePopup()">
+      <img src="" alt="Project Image">
+    </div>
+  
+    <div id="videoPopup" class="video-popup">
+      <button onclick="closeVideoPopup()" style="float: right;">Close</button>
+      <iframe src="https://www.youtube.com/embed/mIOgdl4rl0E" frameborder="0" allowfullscreen></iframe>
+    </div>
+  
+    </div>
+  </div>
+  
+  <footer>
+    <a href="../index">Back to Main Page</a>
+  </footer>
+  
+</body>
+</html>
